@@ -1,0 +1,82 @@
+import axios from "axios";
+import { useState } from "react";
+
+const Login=()=>{
+    const[emailId, setEmailId]=useState("Shreyansh.guptarewa@gmail.com");
+    const[password, setPassword]=useState("Ansh@123$");
+
+    const handleLogin= async ()=>{
+        try{
+            //await axios.post(" http://localhost:3000/login", {
+            //     emailId,
+            //     password
+            // }, { withCredentials: true });
+
+
+            // through fetch---------------------------------
+            fetch("http://localhost:3000/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ emailId, password }),
+                credentials: "include"  // ✅ cookie allow karne ke liye
+            });
+
+
+        }
+        catch(err){
+                console.log("Error: "+ err.message);
+        }
+
+    }
+
+    return(
+
+        <div className="flex justify-center my-20">
+
+        <div className="card bg-base-300 w-96 shadow-sm">
+        <div className="card-body">
+        <h2 className="card-title flex justify-center">Login!</h2>
+
+        <label className="form-control w-full max-w-xs">
+
+        {/* email input label */}
+        <label className="label">
+        <span className="label-text">Email ID</span>
+        </label>
+        <input
+        type="text"
+        placeholder="Enter email"
+        value={emailId}
+        className="input input-bordered w-full max-w-xs"
+        onChange={(e)=>{setEmailId(e.target.value)}}
+        />
+
+        {/* password input label */}
+        <div className="form-control w-full max-w-xs my-4">
+        <label className="label">
+        <span className="label-text">Password</span>
+        </label>
+        <input
+        type="password"
+        placeholder="Enter password"
+        value={password}
+        className="input input-bordered w-full max-w-xs"
+        onChange={(e)=>{setPassword(e.target.value)}}
+        />
+        </div>
+
+
+        </label>
+        <div className="card-actions justify-center my-2">
+        <button className="btn btn-primary" onClick={handleLogin}>Login</button>
+        </div>
+        </div>
+        </div>
+        </div>
+        
+    )
+}
+
+export default Login;
