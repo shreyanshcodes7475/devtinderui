@@ -5,10 +5,8 @@ import { Outlet } from "react-router-dom";
 const Body = () => {
   return (
     <div className="layout">
-      <Navbar />
-
-      <main className="content"><Outlet /> </main>
-        
+      <Navbar/>
+      <main className="content"><Outlet/> </main>
       <Footer />
     </div>
   );

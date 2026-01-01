@@ -1,27 +1,36 @@
 import axios from "axios";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addUser} from "../Utils/Userslice";
+import { useNavigate } from "react-router-dom";
+import Base_url from "../constants/Base_url";
 
 const Login=()=>{
     const[emailId, setEmailId]=useState("Shreyansh.guptarewa@gmail.com");
     const[password, setPassword]=useState("Ansh@123$");
+    const dispatch=useDispatch();
+    const navigate=useNavigate();
 
     const handleLogin= async ()=>{
         try{
-            //await axios.post(" http://localhost:3000/login", {
-            //     emailId,
-            //     password
-            // }, { withCredentials: true });
+            const res=await axios.post({Base_url}+"/login", {
+                emailId,
+                password
+            }, { withCredentials: true });
+
+            dispatch(addUser(res.data));
 
 
             // through fetch---------------------------------
-            fetch("http://localhost:3000/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ emailId, password }),
-                credentials: "include"  // ✅ cookie allow karne ke liye
-            });
+            // fetch("http://localhost:3000/login", {
+            //     method: "POST",
+            //     headers: {
+            //         "Content-Type": "application/json"
+            //     },
+            //     body: JSON.stringify({ emailId, password }),
+            //     credentials: "include"  // ✅ cookie allow karne ke liye
+            // });
+            return navigate("/");
 
 
         }
