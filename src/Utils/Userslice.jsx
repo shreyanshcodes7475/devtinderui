@@ -8,7 +8,7 @@ const Userslice=createSlice({
             return action.payload;  //it will update a the state of the user
         },
 
-        removeUser:(state,action)=>{
+        removeUser:()=>{
             return null;
         }
 
