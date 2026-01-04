@@ -36,11 +36,22 @@ const Body = () => {
     },[]);
 
   return (
-    <div className="layout">
-      <Navbar/>
-      <main className="content"><Outlet/> </main>
-      <Footer />
-    </div>
+    <>
+      {/* FIXED NAVBAR */}
+      <div className="fixed top-0 left-0 right-0 z-50">
+        <Navbar />
+      </div>
+
+      {/* PAGE CONTENT (BODY SCROLLS) */}
+      <main className="pt-16 pb-20 bg-base-200 min-h-screen">
+        <Outlet />
+      </main>
+
+      {/* FIXED FOOTER */}
+      <div className="fixed bottom-0 left-0 right-0 z-40">
+        <Footer />
+      </div>
+    </>
   );
 };
 

@@ -1,8 +1,10 @@
+import Editprofile from "./Editprofile";
+
 const Profile=()=>{
     return(
-        <>
-        <h1>Profile</h1>
-        </>
+        <div>
+            <Editprofile/>
+        </div>
     )
 }
 
