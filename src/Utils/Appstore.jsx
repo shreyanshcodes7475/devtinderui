@@ -1,11 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import useReducer from "./Userslice"
+import userReducer from "./Userslice"
 import feedReducer from "./Feedslice"
+import ConnectionReducer from  "./Connectionsslice"
+import  requestReducer from "./Requestsslice"
 
 const Appstore=configureStore({
     reducer:{
-        user:useReducer,
-        feed: feedReducer
+        user:userReducer,
+        feed: feedReducer,
+        connection: ConnectionReducer,
+        request: requestReducer
     }
 });
 export default Appstore;

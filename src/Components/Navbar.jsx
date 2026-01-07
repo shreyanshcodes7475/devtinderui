@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Base_url from "../constants/Base_url";
 import { removeUser } from "../Utils/Userslice";
+import Connections from "./Connections";
+import Requests from "./Requests";
 
 const Navbar=()=>{
   const user=useSelector((store)=>store.user)
@@ -58,7 +60,10 @@ const Navbar=()=>{
                 </Link>
               </li>
               <li>
-                <a>Settings</a>
+                <Link to ="/connections">Connections</Link>
+              </li>
+              <li>
+                <Link to="requests">Requests</Link>
               </li>
               <li>
                 <a onClick={handleLogout}>Logout</a>
