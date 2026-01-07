@@ -11,7 +11,6 @@ const Requestsslcie=createSlice({
         removeRequest:(state,action)=>{
             const newArray=state.filter((req)=>req._id!=action.payload);
             return newArray;
-            
         }
     }
 })

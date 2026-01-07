@@ -31,15 +31,17 @@ const Connections=()=>{
             <h1 className=" flex justify-center text-3xl bold">Connections</h1>
 
             {connections.map((connection)=>{
-                const {firstName, lastName, about, age, photourl, gender}=connection
+                const {_id,firstName, lastName, about, age, photourl, gender}=connection
                 return(
-                        <div className="flex justify-center">
-                        <div className="flex w-150 py-5 my-5 items-center  rounded-2xl bg-base-300">
-                        <img className="w-22 h-22 rounded-full" src={photourl} alt="photo" />
-                        <div className="pl-5">
-                        <h1>{firstName + " " + lastName}</h1>
-                        {(age && gender) && <h2>{age + gender }</h2>}
-                        <p>{about}</p>
+                    <div key={_id} className="flex justify-center ">
+                        <div className="flex gap-4 items-center w-130 p-4 my-3 rounded-2xl bg-base-200 shadow-md hover:shadow-xl transition-all">
+                        <img className="w-22 h-22 rounded-full object-cover" src={photourl} alt="photo" />
+                        <div className=" flex-1">
+                        <h1 className="font-semibold">{firstName + " " + lastName}</h1>
+                        {(age && gender) && <h2 className="text-sm text-gray-400">{age +" "+ gender }</h2>}
+                        <p className="text-sm mt-1 text-gray-300 line-clamp-2">{about}</p>
+
+                        
 
                         </div>
                         </div>

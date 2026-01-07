@@ -6,7 +6,6 @@ import Feedcard from "./Feedcard";
 import { useEffect } from "react";
 
 const Feed=()=>{
-
     const dispatch=useDispatch();
     const feed=useSelector((store)=>store.feed);
     console.log(feed);
@@ -22,13 +21,16 @@ const Feed=()=>{
     }
 
     useEffect(()=>{
-        getFeed();
-    },[])
+        if( !feed || feed.length==0){
+            getFeed();
+        }
+    },[feed])
 
 
-
+    if(!feed) return <h1 className="text-2xl flex justify-center ">Loading...</h1>
+    if(feed.length==0) return <h1 className="text-2xl flex justify-center">No users on the feed</h1>
     return  (
-            <div>
+            <div className="transition-all duration-300 ease-in-out">
                 {(feed && feed.length>0) && <Feedcard user={feed[0]}/>}
             </div>
     )

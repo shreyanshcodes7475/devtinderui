@@ -1,9 +1,10 @@
 import axios from "axios";
 import Base_url from "../constants/Base_url";
-import { useEffect } from "react";
-import { addRequest } from "../Utils/Requestsslice";
+import { useEffect, useState } from "react";
+import { addRequest, removeRequest} from "../Utils/Requestsslice";
 import { useDispatch, useSelector } from "react-redux";
 const Requests=()=>{
+    const[loading,setLoading]=useState(false);
     const requests=useSelector((store)=>store.request);
     console.log(requests);
     const dispatch=useDispatch();
@@ -11,8 +12,11 @@ const Requests=()=>{
 
     const fetchRequest=async()=>{
         try{
+            if(loading) return;
+            setLoading(true);
             const res=await axios.get(Base_url + "/user/request/received",{withCredentials:true});
             dispatch(addRequest(res?.data?.ConnectionRequests || []));
+            setLoading(false);
         }
         catch(err){
             console.log(err);    
@@ -21,7 +25,9 @@ const Requests=()=>{
 
     const reviewRequest=async (status,req_id)=>{
         try{
+
             const res= await axios.post(Base_url + "/request/review/" + status +"/"+req_id, {},{withCredentials:true});
+            dispatch(removeRequest(req_id));
             
         }
         catch(err){
@@ -45,9 +51,9 @@ const Requests=()=>{
                 const {_id,firstName, lastName, about, age, photourl, gender}=req.fromUserId
                 return(
                     <div key={_id} className="flex justify-center">
-                        <div className="flex justify-evenly min-w-150 max-w-200 py-5 my-5 items-center  rounded-2xl bg-base-300">
-                        <img className="w-22 h-22 rounded-full mx-2" src={photourl} alt="photo" />
-                        <div className="pl-5">
+                        <div className="flex gap-4 items-center w-150 p-4 my-3 rounded-2xl bg-base-200 shadow-md hover:shadow-xl transition-all">
+                        <img className="w-22 h-22 rounded-full mx-2 object-cover" src={photourl} alt="photo" />
+                        <div className="flex-1">
                         <h1>{firstName + " " + lastName}</h1>
                         {(age && gender) && <h2>{age + gender }</h2>}
                         <p>{about}</p>

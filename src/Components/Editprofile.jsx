@@ -10,13 +10,13 @@ import Feedcard from "./Feedcard";
 const Editprofile=()=>{
     const user=useSelector((store)=>store.user);
     const [open, setOpen] = useState(false);
-    const[firstName, setFirstName]=useState(user.firstName || "");
-    const[lastName, setLastName]=useState(user.lastName || "");
-    const[about, setAbout]=useState(user.about || "");
-    const[age, setAge]=useState(user.age || "");
-    const[photoUrl, setPhotoUrl]=useState(user.photourl || "");
-    const[skills, setSkills]=useState(user.skills || []);
-    const[gender, setGender]=useState(user.gender || "");
+    const[firstName, setFirstName]=useState(user?.firstName || "");
+    const[lastName, setLastName]=useState(user?.lastName || "");
+    const[about, setAbout]=useState(user?.about || "");
+    const[age, setAge]=useState(user?.age || "");
+    const[photoUrl, setPhotoUrl]=useState(user?.photourl || "");
+    const[skills, setSkills]=useState(user?.skills || []);
+    const[gender, setGender]=useState(user?.gender || "");
 
     const dispatch=useDispatch();
     const navigate=useNavigate();
