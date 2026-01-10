@@ -57,7 +57,7 @@ const Login=()=>{
 
         }
         catch(err){
-            setError("something went wrong "+errmessage);
+            setError("something went wrong "+err.message);
 
         }
 

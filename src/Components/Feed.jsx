@@ -8,7 +8,6 @@ import { useEffect } from "react";
 const Feed=()=>{
     const dispatch=useDispatch();
     const feed=useSelector((store)=>store.feed);
-    console.log(feed);
     const getFeed=async ()=>{
         if(feed && feed.length> 0) return;
         try{
